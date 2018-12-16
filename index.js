@@ -83,19 +83,29 @@ class Node {
      */
     getBlocks(begin, end) {
 
+        begin = Number(begin)
+        end = Number(end)
+
         let promises = []
         for (let block = begin; block <= end; block++) {
-            let endpoint = '/'
-            let method = 'POST'
-            let params = {
-                method: 'getblockbyheight',
-                params: [block, 0, 1]
-            }
+            let endpoint = `/block/${block}`
+            let method = 'GET'
+            let params = { }
 
             promises.push(this.handler(endpoint, method, params))
         }
 
         return Promise.all(promises)
+            .then(responses => {
+                let blocks = []
+                responses.forEach(response => {
+                    if (response.success && response.body) {
+                        blocks.push(response.body)
+                    }
+                })
+
+                return blocks
+            })
 
     }
 

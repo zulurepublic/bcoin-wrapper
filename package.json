@@ -1,6 +1,6 @@
 {
   "name": "@zulurepublic/bcoin-wrapper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A wrapper for the bcoin node.",
   "main": "index.js",
   "scripts": {
