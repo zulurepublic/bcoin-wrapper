@@ -67,15 +67,9 @@ class Node {
      *
      */
     getBlock(block) {
-
-        let nodeMethod = isNaN(block) ? 'getblock' : 'getblockbyheight'
-
-        let endpoint = '/'
-        let method = 'POST'
-        let params = {
-            method: nodeMethod,
-            params: [block, 0, 1]
-        }
+        let endpoint = '/block/${block}'
+        let method = 'GET'
+        let params = { }
 
         return this.handler(endpoint, method, params)
     }
