@@ -67,7 +67,7 @@ class Node {
      *
      */
     getBlock(block) {
-        let endpoint = '/block/${block}'
+        let endpoint = `/block/${block}`
         let method = 'GET'
         let params = { }
 
