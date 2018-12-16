@@ -1,0 +1,24 @@
+{
+  "name": "@zulurepublic/bcoin-wrapper",
+  "version": "1.0.0",
+  "description": "A wrapper for the bcoin node.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zulurepublic/bcoin-wrapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zulurepublic/bcoin-wrapper/issues"
+  },
+  "homepage": "https://github.com/zulurepublic/bcoin-wrapper#readme",
+  "dependencies": {
+    "request": "^2.88.0",
+    "satoshi-bitcoin": "^1.0.4"
+  },
+  "devDependencies": {}
+}
