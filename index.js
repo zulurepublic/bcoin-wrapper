@@ -12,7 +12,7 @@ class Node {
      *
      * @param {String} endpoint The endpoint to request.
      * @param {String} method The request method to make.
-     * @param {String} json The data to send with the request.
+     * @param {Object} json The data to send with the request.
      *
      */
     async handler(endpoint, method, json) {
@@ -50,7 +50,7 @@ class Node {
      * Gets basic blockchain information.
      *
      */
-    getInfo() {
+    async getInfo() {
         let endpoint = '/'
         let method = 'GET'
         let params = { }
@@ -66,7 +66,7 @@ class Node {
      * @param {String} block The blockheight or blockhash to fetch.
      *
      */
-    getBlock(block) {
+    async getBlock(block) {
         let endpoint = `/block/${block}`
         let method = 'GET'
         let params = { }
@@ -81,7 +81,7 @@ class Node {
      * @param {Number} end The blockheight to end on (inclusive).
      *
      */
-    getBlocks(begin, end) {
+    async getBlocks(begin, end) {
 
         begin = Number(begin)
         end = Number(end)
@@ -122,7 +122,7 @@ class Node {
      * @param {String} txid The transaction hash of the transaction to fetch.
      *
      */
-    getTransaction(txid) {
+    async getTransaction(txid) {
         let endpoint = `/tx/${txid}`
         let method = 'GET'
         let params = { }
@@ -135,7 +135,7 @@ class Node {
      * @param {String} transaction The raw transaction to broadcast.
      *
      */
-    broadcastTransaction(transaction) {
+    async broadcastTransaction(transaction) {
         let endpoint = '/'
         let method = 'POST'
         let params = {
@@ -158,7 +158,7 @@ class Node {
      * @param {String} address The address to get the unspent transactions of.
      *
      */
-    getUtxos(address) {
+    async getUtxos(address) {
         let endpoint = `/coin/address/${address}`
         let method = 'GET'
         let params = { }
@@ -171,7 +171,7 @@ class Node {
      * @param {String} address The address to get the transactions of.
      *
      */
-    getTransactions(address) {
+    async getTransactions(address) {
         let endpoint = `/tx/address/${address}`
         let method = 'GET'
         let params = { }
@@ -201,9 +201,7 @@ class Node {
             })
 
             const sb = require('satoshi-bitcoin')
-            let balance = sb.toBitcoin(balanceInSatoshis)
-
-            return balance
+            return sb.toBitcoin(balanceInSatoshis)
         }
     }
 
