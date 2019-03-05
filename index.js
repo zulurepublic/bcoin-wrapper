@@ -54,7 +54,7 @@ class Node {
         let endpoint = '/'
         let method = 'GET'
         let params = { }
-        return this.handler(endpoint, method, params)
+        return await this.handler(endpoint, method, params)
     }
 
     //region Block
@@ -71,7 +71,7 @@ class Node {
         let method = 'GET'
         let params = { }
 
-        return this.handler(endpoint, method, params)
+        return await this.handler(endpoint, method, params)
     }
 
     /**
@@ -95,7 +95,7 @@ class Node {
             promises.push(this.handler(endpoint, method, params))
         }
 
-        return Promise.all(promises)
+        return await Promise.all(promises)
             .then(responses => {
                 let blocks = []
                 responses.forEach(response => {
@@ -126,7 +126,7 @@ class Node {
         let endpoint = `/tx/${txid}`
         let method = 'GET'
         let params = { }
-        return this.handler(endpoint, method, params)
+        return await this.handler(endpoint, method, params)
     }
 
     /**
@@ -142,7 +142,7 @@ class Node {
             method: 'sendrawtransaction',
             params: [transaction]
         }
-        return this.handler(endpoint, method, params)
+        return await this.handler(endpoint, method, params)
     }
 
     //---------------------------------------------------------------------------------------
@@ -162,7 +162,7 @@ class Node {
         let endpoint = `/coin/address/${address}`
         let method = 'GET'
         let params = { }
-        return this.handler(endpoint, method, params)
+        return await this.handler(endpoint, method, params)
     }
 
     /**
@@ -175,7 +175,7 @@ class Node {
         let endpoint = `/tx/address/${address}`
         let method = 'GET'
         let params = { }
-        return this.handler(endpoint, method, params)
+        return await this.handler(endpoint, method, params)
     }
 
     /**
