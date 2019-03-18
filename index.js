@@ -193,7 +193,7 @@ class Node {
         if (response.success) {
             let utxos = response.body
 
-            let balance
+            let balance = 0
             let balanceInSatoshis = 0
             utxos.forEach(utxo => {
                 if (utxo.height > 0) {
