@@ -193,15 +193,24 @@ class Node {
         if (response.success) {
             let utxos = response.body
 
+            let balance
             let balanceInSatoshis = 0
             utxos.forEach(utxo => {
                 if (utxo.height > 0) {
-                    balanceInSatoshis += utxo.value
+                    if (typeof utxo.value === 'string') {
+                        balance += utxo.value
+                    } else {
+                        balanceInSatoshis += utxo.value
+                    }
                 }
             })
 
-            const sb = require('satoshi-bitcoin')
-            return sb.toBitcoin(balanceInSatoshis)
+            if (balanceInSatoshis) {
+                const sb = require('satoshi-bitcoin')
+                balance = sb.toBitcoin(balanceInSatoshis)
+            }
+
+            return balance
         }
     }
 
