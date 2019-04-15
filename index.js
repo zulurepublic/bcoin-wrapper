@@ -1,10 +1,17 @@
 const request = require('request')
 
 class Node {
-    constructor(token, url) {
+    constructor(token, urls) {
         if (!token) throw new SyntaxError('Token is required.')
         this.token = token
-        this.url = url
+
+        if (typeof urls === 'string') {
+            this.urls = [ urls ]
+        } else if (Array.isArray(urls)) {
+            this.urls = urls
+        }
+
+
     }
 
     /**
@@ -13,13 +20,14 @@ class Node {
      * @param {String} endpoint The endpoint to request.
      * @param {String} method The request method to make.
      * @param {Object} json The data to send with the request.
+     * @param (Number} [nodeIndex] The index from the nodes array to use as the request url.
      *
      */
-    async handler(endpoint, method, json) {
+    async handler(endpoint, method, json, nodeIndex = 0) {
         let nodePromise = new Promise((resolve, reject) => {
             request(
                 {
-                    url: this.url + endpoint,
+                    url: this.urls[nodeIndex] + endpoint,
                     headers: {
                         Authorization: `Basic ${this.token}`
                     },
@@ -41,7 +49,12 @@ class Node {
             let body = await nodePromise
             return { success: true, body }
         } catch (error) {
-            return { success: false, error }
+
+            if (nodeIndex + 1 < this.urls.length) {
+                return await this.handler(endpoint, method, json, nodeIndex + 2)
+            } else {
+                return { success: false, error }
+            }
         }
 
     }
