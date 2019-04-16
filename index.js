@@ -51,7 +51,7 @@ class Node {
         } catch (error) {
 
             if (nodeIndex + 1 < this.urls.length) {
-                return await this.handler(endpoint, method, json, nodeIndex + 2)
+                return await this.handler(endpoint, method, json, nodeIndex + 1)
             } else {
                 return { success: false, error }
             }
