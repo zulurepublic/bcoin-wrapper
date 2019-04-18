@@ -20,7 +20,7 @@ class Node {
      * @param {String} endpoint The endpoint to request.
      * @param {String} method The request method to make.
      * @param {Object} json The data to send with the request.
-     * @param (Number} [nodeIndex] The index from the nodes array to use as the request url.
+     * @param {Number} [nodeIndex] The index from the nodes array to use as the request url.
      *
      */
     async handler(endpoint, method, json, nodeIndex = 0) {
