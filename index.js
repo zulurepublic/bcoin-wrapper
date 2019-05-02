@@ -211,7 +211,7 @@ class Node {
             utxos.forEach(utxo => {
                 if (utxo.height > 0) {
                     if (typeof utxo.value === 'string') {
-                        balance += utxo.value
+                        balance += Number(utxo.value)
                     } else {
                         balanceInSatoshis += utxo.value
                     }
