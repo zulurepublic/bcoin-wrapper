@@ -198,6 +198,7 @@ class Node {
      *
      */
     async getBalance(address) {
+        const BigNumber = require('bignumber.js')
         let endpoint = `/coin/address/${address}`
         let method = 'GET'
         let params = { }
@@ -211,9 +212,9 @@ class Node {
             utxos.forEach(utxo => {
                 if (utxo.height > 0) {
                     if (typeof utxo.value === 'string') {
-                        balance += Number(utxo.value)
+                        balance = new BigNumber(Number(utxo.value)).plus(balance).toString()
                     } else {
-                        balanceInSatoshis += utxo.value
+                        balanceInSatoshis = new BigNumber(Number(utxo.value)).plus(balanceInSatoshis).toString()
                     }
                 }
             })
