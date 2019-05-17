@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/zulurepublic/bcoin-wrapper#readme",
   "dependencies": {
-    "bignumber": "^1.1.0",
+    "bignumber.js": "^8.0.1",
     "request": "^2.88.0",
     "satoshi-bitcoin": "^1.0.4"
   },
