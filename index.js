@@ -198,7 +198,7 @@ class Node {
      *
      */
     async getBalance(address) {
-        const BigNumber = require('bignumber')
+        const BigNumber = require('bignumber.js')
         let endpoint = `/coin/address/${address}`
         let method = 'GET'
         let params = { }
