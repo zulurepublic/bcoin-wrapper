@@ -70,6 +70,17 @@ class Node {
         return await this.handler(endpoint, method, params)
     }
 
+    async estimateFee(blocks = 3) {
+        let endpoint = `/`
+        let method = 'POST'
+        let params = {
+            method: 'estimatefee',
+            params: [ blocks.toString() ]
+        }
+
+        return await this.handler(endpoint, method, params)
+    }
+
     //region Block
     //---------------------------------------------------------------------------------------
 
