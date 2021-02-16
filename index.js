@@ -206,9 +206,10 @@ class Node {
      * Fetch the balance for a given address.
      *
      * @param {String} address The address to get the balance of.
+     * @param {Boolean} allowZeroConf Whether or not to include UTXOs with zero confirmations.
      *
      */
-    async getBalance(address) {
+    async getBalance(address, allowZeroConf = true) {
         const BigNumber = require('bignumber.js')
         let endpoint = `/coin/address/${address}`
         let method = 'GET'
@@ -221,7 +222,7 @@ class Node {
             let balance = 0
             let balanceInSatoshis = 0
             utxos.forEach(utxo => {
-                if (utxo.height > 0) {
+                if (allowZeroConf || utxo.height > 0) {
                     if (typeof utxo.value === 'string') {
                         balance = new BigNumber(Number(utxo.value)).plus(balance).toString()
                     } else {
